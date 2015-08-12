@@ -147,7 +147,7 @@ $ threepio open hosts --localUrl othersite.local --hostsFile /etc/apache/hosts
 
 The intended use of threepio is globally. There is no need to add it to your `package.json`; the global installation should suffice.
 
-The most common use case would be a new Wordpress install. After downloading/cloning a new installation, there are certain things you need to do:
+A common use case for threepio would be a new Wordpress install. After downloading/cloning a new installation, there are certain things you need to do:
 
 - Create a MySQL database
 - Create `wp-config.php`
