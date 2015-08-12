@@ -1,0 +1,14 @@
+<% if (apache24) { %>
+<Directory "<%= baseDirectory %>">
+  Order allow,deny
+  Allow from all
+  Require all granted
+</Directory>
+
+<% } %>
+<VirtualHost *:<%= httpPort %>>
+  ServerAlias <%= localUrl %>
+  DocumentRoot <%= baseDirectory %>
+  CustomLog <%= customLog %> combined
+  ErrorLog <%= errorLog %>
+</VirtualHost>
