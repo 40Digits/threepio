@@ -94,7 +94,7 @@ To make setting up environments easier, threepio leverages Embedded JavaScript t
   <tr>
     <td>`apache24`</td>
     <td>`true`</td>
-    <td>When using Apache 2.4, you may experience a 403 when visiting the newly created url. This adds a [directive](http://stackoverflow.com/questions/6959189/Apache-virtualhost-403-forbidden#answer-13923435) to the vhosts that fixes the issue if you do not have it changed in your global `httpd.conf` file.</td>
+    <td>When using Apache 2.4, you may experience a 403 when visiting the newly created url. This adds a <a href="http://stackoverflow.com/questions/6959189/Apache-virtualhost-403-forbidden#answer-13923435">directive</a> to the vhosts that fixes the issue if you do not have it changed in your global `httpd.conf` file.</td>
   </tr>
   <tr>
     <td>`templateDir`</td>
