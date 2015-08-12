@@ -37,69 +37,69 @@ To make setting up environments easier, threepio leverages Embedded JavaScript t
     <th>Description</th>
   </tr>
   <tr>
-    <td>`siteName`</td>
-    <td>Your current working directory name (sanitized with special characters replaced with a dash (`-`) and lowercased)</td>
+    <td><code>siteName</code></td>
+    <td>Your current working directory name (sanitized with special characters replaced with a dash (<code>-</code>) and lowercased)</td>
     <td>This is the "name" of your site as it relates to various development components. This name is used to create the local url, database, Apache log names and vhost filename.</td>
   </tr>
   <tr>
-    <td>`localUrl`</td>
-    <td>`'<%= siteName %>.local'`</td>
-    <td>This is the name of your local url which is rendered with EJS using `siteName` as the domain.</td>
+    <td><code>localUrl</code></td>
+    <td><code>'<%= siteName %>.local'</code></td>
+    <td>This is the name of your local url which is rendered with EJS using <code>siteName</code> as the domain.</td>
   </tr>
   <tr>
-    <td>`baseDirectory`</td>
+    <td><code>baseDirectory</code></td>
     <td>Your current working directory</td>
-    <td>This value is used to create your VirtualHost directory. **Note**: This value is set separately from `siteName`. Although they both default to the current working directory, this is the full path and `siteName` is just the directory name itself.</td>
+    <td>This value is used to create your VirtualHost directory. **Note**: This value is set separately from <code>siteName</code>. Although they both default to the current working directory, this is the full path and <code>siteName</code> is just the directory name itself.</td>
   </tr>
   <tr>
-    <td>`database`</td>
-    <td>A sanitized version of `siteName` with special characters replaced with an underscore (`'_'`) and lowercased</td>
+    <td><code>database</code></td>
+    <td>A sanitized version of <code>siteName</code> with special characters replaced with an underscore (<code>'_'</code>) and lowercased</td>
     <td>The name to give the created database</td>
   </tr>
   <tr>
-    <td>`hostsFile`</td>
-    <td>`'/etc/hosts'`</td>
+    <td><code>hostsFile</code></td>
+    <td><code>'/etc/hosts'</code></td>
     <td>The absolute filepath of your hosts file</td>
   </tr>
   <tr>
-    <td>`httpPort`</td>
-    <td>`80`</td>
+    <td><code>httpPort</code></td>
+    <td><code>80</code></td>
     <td>The port number used in the opening tag of your VirtualHost conf</td>
   </tr>
   <tr>
-    <td>`vhostsDir`</td>
-    <td>`'/etc/apache2/extra/vhosts'`</td>
-    <td>The directory to include a vhost `.conf` file.</td>
+    <td><code>vhostsDir</code></td>
+    <td><code>'/etc/apache2/extra/vhosts'</code></td>
+    <td>The directory to include a vhost <code>.conf</code> file.</td>
   </tr>
   <tr>
-    <td>`customLog`</td>
-    <td>`'/http-logs/<%= siteName %>.log'`</td>
+    <td><code>customLog</code></td>
+    <td><code>'/http-logs/<%= siteName %>.log'</code></td>
     <td>The filename and absolute path of your Apache custom log file.</td>
   </tr>
   <tr>
-    <td>`errorLog`</td>
-    <td>`'/http-logs/<%= siteName %>.error.log'`</td>
+    <td><code>errorLog</code></td>
+    <td><code>'/http-logs/<%= siteName %>.error.log'</code></td>
     <td>The filename and absolute path of your Apache error log file.</td>
   </tr>
   <tr>
-    <td>`mysqlUser`</td>
-    <td>`'root'`</td>
+    <td><code>mysqlUser</code></td>
+    <td><code>'root'</code></td>
     <td>Your MySQL username</td>
   </tr>
   <tr>
-    <td>`mysqlPw`</td>
-    <td>`''`</td>
+    <td><code>mysqlPw</code></td>
+    <td><code>''</code></td>
     <td>Your MySQL password</td>
   </tr>
   <tr>
-    <td>`apache24`</td>
-    <td>`true`</td>
+    <td><code>apache24</code></td>
+    <td><code>true</code></td>
     <td>When using Apache 2.4, you may experience a 403 when visiting the newly created url. This adds a <a href="http://stackoverflow.com/questions/6959189/Apache-virtualhost-403-forbidden#answer-13923435">directive</a> to the vhosts that fixes the issue if you do not have it changed in your global `httpd.conf` file.</td>
   </tr>
   <tr>
-    <td>`templateDir`</td>
+    <td><code>templateDir</code></td>
     <td>None</td>
-    <td>The directory to any templates used with this package, such as the template used to create a vhost `.conf` file.</td>
+    <td>The directory to any templates used with this package, such as the template used to create a vhost <code>.conf</code> file.</td>
   </tr>
 </table>
 
