@@ -218,4 +218,4 @@ module.exports = {
 
 ## Considerations
 
-If the Apache log paths don't exist, you'll get weird behavior. So make sure those are valid paths by ensuring the default are adequete or use a global configuration setting defined in `~/.threepio`. :feels_good:
+If the Apache log paths don't exist, you'll get weird behavior. So make sure those are valid paths by ensuring the default are adequete or use a global configuration setting defined in `~/.threepio`.
