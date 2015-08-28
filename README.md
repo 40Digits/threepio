@@ -94,7 +94,7 @@ To make setting up environments easier, threepio leverages Embedded JavaScript t
   <tr>
     <td><code>apache24</code></td>
     <td><code>true</code></td>
-    <td>When using Apache 2.4, you may experience a 403 when visiting the newly created url. This adds a <a href="http://stackoverflow.com/questions/6959189/Apache-virtualhost-403-forbidden#answer-13923435">directive</a> to the vhosts that fixes the issue if you do not have it changed in your global `httpd.conf` file.</td>
+    <td>When using Apache 2.4, you may experience a 403 when visiting the newly created url. This adds a <a href="http://stackoverflow.com/questions/6959189/Apache-virtualhost-403-forbidden#answer-13923435">directive</a> to the vhost that fixes the issue if you do not have it changed in your global `httpd.conf` file.</td>
   </tr>
   <tr>
     <td><code>templateDir</code></td>
@@ -162,7 +162,7 @@ Wow, that's a lot of stuff. Albeit not too difficult or time-consuming, but the 
 You would use threepio as soon as you downloaded a new WP install or forked and cloned a boilerplate like we do at 40digits. Instead of doing all that, you could set up some simple configuration as mentioned above and run something like this:
 
 ```
-$ threepio mysql wp-config hosts vhosts wp-theme restart-apache open
+$ threepio mysql wp-config hosts vhost wp-theme restart-apache open
 ```
 
 This would do everything you need in seconds, saving you some time.
