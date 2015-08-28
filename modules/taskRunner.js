@@ -16,6 +16,8 @@ module.exports  = function taskRunner(taskName, config) {
     // If the profile exists, run it, otherwise tell about it
     if (typeof config.workflows !== 'undefined' && typeof config.workflows[profile] !== 'undefined') {
 
+      Logger.log('Running workflow profile \'' + ' '.bgGreen + profile.white.bgGreen.bold + ' '.bgGreen + '\'...');
+
       // Run the defined tasks
       for (var i = 0; i < config.workflows[profile].length; i++) {
         taskRunner(config.workflows[profile][i], config);
