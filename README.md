@@ -193,11 +193,37 @@ That's it. All that `threepio.json` file has is a JSON array of the tasks you ne
 
 Putting those 95 bytes with the repo would be even simpler.
 
+#### Workflow Profiles
+
+While using `threepio.json` is more modular, depending on your development style or habits, you may not need or want to define a separate file for every site you do. If you do a lot of Wordpress development, it would be easier if you had a globally defined Wordpress workflow instead of having to create a `threepio.json` for every project.
+
+You can define workflow profiles in either the local `.threepio` or your global `~/.threepio` files as an object called `workflows`. Here's an example:
+
+```
+{
+  "localUrl": "<%= siteName %>.dev",
+  "customLog": "/Users/user/www/logs/<%= siteName %>.log",
+  "errorLog": "/Users/user/www/logs/<%= siteName %>.error.log",
+  "workflows": {
+    "wp": ["wp-config", "wp-theme"],
+    "drupal": ["mysql", "vhost"],
+    "laravel": ["mysql"]
+  }
+}
+```
+
+To run a profile (or chain them together for whatever reason), run:
+```
+$ threepio workflow:wp
+```
+
+You can name the profiles whatever you like, but the tasks defined within the profile must exist. You could have a profile named `"vader"`. To run that profile, `$ threepio workflow:vader`.
+
 ## Available tasks
 
 Run `$ threepio -h` or `$ threepio --help` to see your current installation's available tasks. The idea is that this will be regularly updated, adding more available tasks to make the mundane a little less mundane.
 
-This command will also show you some example usages and what the current configuration settings would be if you ran a task. This is helpful in case you're not sure if you have everything configured correctly.
+This command will also show you some example usages and what the current configuration settings would be, including your configuration-defined workflow profiles, if you ran a task. This is helpful in case you're not sure if you have everything configured correctly.
 
 ## Contributing
 

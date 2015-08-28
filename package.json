@@ -3,7 +3,7 @@
   "title": "Developer-Local Environment relations.",
   "description": "Setup your local enviornment.",
   "main": "test.js",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "homepage": "http://www.40digits.com",
   "repository": {
     "type": "git",
