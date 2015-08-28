@@ -15,7 +15,7 @@ module.exports = {
     // Read the json file and run all the commands
     fs.readFile(path.join(config.baseDirectory, 'threepio.json'), 'utf8', function (err, data) {
       if (err) {
-        Logger.error('\'threepio.json\' not found. Please create one or run `threepio --help` to see available tasks to run.');
+        Logger.error('By running `threepio` with no other task specified, a workflow file, \'threepio.json\', was expected but not found. Please create one or run `threepio --help` to see available tasks to run.');
         return;
       }
 
