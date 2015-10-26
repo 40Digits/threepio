@@ -135,7 +135,7 @@ This is a file located in your home directory and named `.threepio` (aka `~/.thr
 }
 ```
 
-#### Method 3: Options passed to the cli
+#### Method 4: Options passed to the cli
 
 These option values are give the highest priority.
 
