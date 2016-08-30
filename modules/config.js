@@ -1,39 +1,37 @@
-'use strict';
+const path = require('path');
+const fs = require('fs');
+const ejs = require('ejs');
+const Logger = require('./logger');
+const merge = require('./merge');
+const argv = require('minimist')(process.argv.slice(2));
 
-var path = require('path'),
-    fs = require('fs'),
-    ejs = require('ejs'),
-    Logger = require('./logger'),
-    merge = require('./merge'),
-    argv = require('minimist')(process.argv.slice(2)),
+const getConfig = (filePath) => {
+  let config = {};
 
-    getConfig = function (filePath) {
-      var config = {};
+  try {
+    config = JSON.parse(fs.readFileSync(filePath).toString());
+  } catch (e) {
+    // Do nothing, the config file doesn't exist
+    // Or there was malformed json
+    if (e instanceof SyntaxError) {
+      Logger.error("There is a JSON syntax error in '" + filePath + "'. This configuration file could not be included.\n\n  Error: " + e.message + '\n');
+    }
+  }
 
-      try {
-        config = JSON.parse(fs.readFileSync(filePath).toString());
-      } catch (e) {
-        // Do nothing, the config file doesn't exist
-        // Or there was malformed json
-        if (e instanceof SyntaxError) {
-          Logger.error("There is a JSON syntax error in '" + filePath + "'. This configuration file could not be included.\n\n  Error: " + e.message + '\n');
-        }
-      }
-
-      return config;
-    },
+  return config;
+};
 
     // Look for the different config locations
-    localConfig = getConfig(path.join(process.cwd(), '.threepio')),
-    globalConfig = getConfig(path.join(process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'], '.threepio')),
+const localConfig = getConfig(path.join(process.cwd(), '.threepio'));
+const globalConfig = getConfig(path.join(process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'], '.threepio'));
 
     // Default config settings
-    defaultConfig = require('../defaultConfig');
+const defaultConfig = require('../defaultConfig');
 
-module.exports = function () {
+module.exports = () => {
 
   // Merge configs, default < global < local config file < cli options
-  var mergedConfig = merge(defaultConfig, globalConfig, localConfig, argv);
+  const mergedConfig = merge(defaultConfig, globalConfig, localConfig, argv);
 
   // Basic sanitation of the site name
   mergedConfig.siteName = mergedConfig.siteName.replace(/[^\w]/g, '-').toLowerCase();
@@ -53,11 +51,10 @@ module.exports = function () {
 
   // Clean up workflow profiles if they are defined
   if (typeof mergedConfig.workflows !== 'undefined') {
+    for (let key in mergedConfig.workflows) {
+      let profileTasks = [];
 
-    for (var key in mergedConfig.workflows) {
-      var profileTasks = [];
-
-      for (var index in mergedConfig.workflows[key]) {
+      for (let index in mergedConfig.workflows[key]) {
         profileTasks.push(mergedConfig.workflows[key][index]);
       }
 
@@ -71,7 +68,7 @@ module.exports = function () {
   }
 
   // Finally, render any string that needs rendered with ejs
-  for (var property in mergedConfig) {
+  for (let property in mergedConfig) {
     if (mergedConfig.hasOwnProperty(property) && typeof mergedConfig[property] === 'string') {
       mergedConfig[property] = ejs.render(mergedConfig[property], mergedConfig);
     }
@@ -84,5 +81,4 @@ module.exports = function () {
   }
 
   return mergedConfig;
-
 };

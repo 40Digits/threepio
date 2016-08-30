@@ -1,19 +1,17 @@
-'use strict';
-
-var colors = require('colors');
+const colors = require('colors');
 
 module.exports = {
-  info: function (message) {
+  info(message) {
     console.log(this.timestamp + message.cyan);
   },
-  error: function (message) {
+  error(message) {
     console.log(this.timestamp + message.red);
   },
-  log: function (message) {
+  log(message) {
     console.log(this.timestamp + message);
   },
-  get now () {
-    var now = new Date();
+  get now() {
+    let now = new Date();
     return now.getHours() + ':' + ('0' + now.getMinutes()).slice(-2) + ':' + ('0' + now.getSeconds()).slice(-2);
   },
   get timestamp () {

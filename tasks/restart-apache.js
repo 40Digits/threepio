@@ -1,19 +1,14 @@
-'use strict';
-
-var exec = require('child_process').exec,
-    Logger = require('../modules/logger');
+const exec = require('child_process').exec;
+const Logger = require('../modules/logger');
 
 module.exports = {
-
   description: 'Restarts apache; requires sudo permissions',
 
-  task: function (config, callback) {
-
+  task(config, callback) {
     // Restart apache
-    exec('sudo apachectl -e info -k restart', function (err) {
-
+    exec('sudo apachectl -e info -k restart', (err) => {
       if (err) {
-        Logger.error('Please run this command with `sudo`');
+        Logger.error('Please run this command with "sudo"');
         return;
       }
 
@@ -21,7 +16,7 @@ module.exports = {
 
       if (callback) {
         callback();
-      };
+      }
     });
-  }
+  },
 };

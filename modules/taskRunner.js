@@ -1,17 +1,15 @@
-'use strict';
-
-var Logger = require('../modules/logger'),
-    colors = require('colors'),
-    fs = require('fs'),
-    path = require('path');
+const Logger = require('../modules/logger');
+const colors = require('colors');
+const fs = require('fs');
+const path = require('path');
 
 // This dynamically requires a task based on the filepath and runs it
-module.exports  = function taskRunner(taskName, config) {
-  var taskPath = path.join(__dirname, '..', 'tasks', taskName);
+module.exports = function taskRunner(taskName, config) {
+  const taskPath = path.join(__dirname, '..', 'tasks', taskName);
 
   // If we're trying to run a workflow profile defined within the config
   if (taskName.indexOf('workflow:') !== -1) {
-    var profile = taskName.replace('workflow:', '');
+    const profile = taskName.replace('workflow:', '');
 
     // If the profile exists, run it, otherwise tell about it
     if (typeof config.workflows !== 'undefined' && typeof config.workflows[profile] !== 'undefined') {
@@ -19,18 +17,17 @@ module.exports  = function taskRunner(taskName, config) {
       Logger.log('Running workflow profile \'' + ' '.bgGreen + profile.white.bgGreen.bold + ' '.bgGreen + '\'...');
 
       // Run the defined tasks
-      for (var i = 0; i < config.workflows[profile].length; i++) {
+      for (let i = 0; i < config.workflows[profile].length; i++) {
         taskRunner(config.workflows[profile][i], config);
       }
-
     } else {
-      Logger.error('You do not have a workflow profile named \'' + profile + '\' defined anywhere.');
+      Logger.error(`You do not have a workflow profile named \'${profile}\' defined anywhere.`);
     }
   } else { // Just a normal task name
     // Only run if the file exists, doi
-    fs.readFile(taskPath + '.js', function (err, data) {
+    fs.readFile(`${taskPath}.js`, (err) => {
       if (err) {
-        Logger.error('Task \'' + taskName + '\' does not exist. Please run `threepio --help` for available tasks.');
+        Logger.error(`Task \'${taskName}\' does not exist. Please run "threepio --help" for available tasks.`);
         return;
       }
 

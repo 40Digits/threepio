@@ -1,17 +1,20 @@
-'use strict';
-
-var open = require('open');
+const open = require('open');
 
 module.exports = {
-
   description: 'Opens `localUrl` in your default browser',
 
-  task: function (config, callback) {
+  setHTTPProtocol(url) {
+    if (url.indexOf('http://') === -1) {
+      return `http://${url}`;
+    }
+    return url;
+  },
 
-    open(config.localUrl.indexOf('http://') === -1 ? 'http://' + config.localUrl : config.localUrl);
-
+  task(config, callback) {
+    const localUrl = this.setHTTPProtocol(config.localUrl);
+    open(localUrl);
     if (callback) {
       callback();
-    };
-  }
+    }
+  },
 };

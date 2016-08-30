@@ -1,36 +1,28 @@
-'use strict';
-
-var fs = require('fs'),
-    Logger = require('../modules/logger'),
-    colors = require('colors'),
-    path = require('path'),
-    taskRunner = require('../modules/taskRunner');
+const fs = require('fs');
+const Logger = require('../modules/logger');
+const path = require('path');
+const taskRunner = require('../modules/taskRunner');
 
 module.exports = {
-
   description: 'Runs all tasks specified in a `threepio.json` file.',
 
-  task: function (config, callback) {
-
+  task(config) {
     // Read the json file and run all the commands
     fs.readFile(path.join(config.baseDirectory, 'threepio.json'), 'utf8', function (err, data) {
       if (err) {
-        Logger.error('By running `threepio` with no other task specified, a workflow file, \'threepio.json\', was expected but not found. Please create one or run `threepio --help` to see available tasks to run.');
+        Logger.error('By running "threepio" with no other task specified, a workflow file, \"threepio.json\", was expected but not found. Please create one or run "threepio --help" to see available tasks to run.');
         return;
       }
 
       try {
-        var workflowTasks = JSON.parse(data);
+        const workflowTasks = JSON.parse(data);
 
-        for (var i = 0; i < workflowTasks.length; i++) {
+        for (let i = 0; i < workflowTasks.length; i++) {
           taskRunner(workflowTasks[i], config);
         }
-
       } catch (e) {
         Logger.error(e.message);
       }
-
     });
-  }
-
+  },
 };
