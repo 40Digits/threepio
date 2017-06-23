@@ -46,6 +46,11 @@ module.exports = function () {
   // A very basic sanitation the databasea name
   mergedConfig.database = mergedConfig.database.replace(/[^\w]/g, '_').toLowerCase();
 
+  // Check baseDirectory, create absolute path from relative path
+  if (!path.isAbsolute(mergedConfig.baseDirectory)) {
+    mergedConfig.baseDirectory = path.join(process.cwd(), mergedConfig.baseDirectory);
+  }
+
   // Clean the tasks array reference
   // If no tasks are present, let's assume we're using a workflow file that holds the tasks
   mergedConfig.tasks = argv._.length > 0 ? argv._ : ['workflow'];
